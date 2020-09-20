@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Petagram</string>
+    <string name="nombre">Jhunior Cuadros</string>
+    <string name="telefono">976343154</string>
+    <string name="email">kcuadror@everis.com</string>
+    <string name="pnombre">nombre</string>
+    <string name="ptelefono">telefono</string>
+    <string name="pemail">email</string>
+</resources>
