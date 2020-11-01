@@ -1,15 +1,20 @@
 package com.bluejnr.petagram;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
+import com.bluejnr.petagram.util.JavaMailAPI;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 
@@ -17,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Pet> pets;
     private RecyclerView rvPets;
-    private ImageButton imgBtnFavorites;
     public PetAdapter petAdapter;
 
     @Override
@@ -25,34 +29,53 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        imgBtnFavorites = (ImageButton) findViewById(R.id.btnFavorites);
-
-        Toolbar miActionBar = (Toolbar) findViewById(R.id.miActionBarFavorite);
+        Toolbar miActionBar = (Toolbar) findViewById(R.id.miActionBar);
         setSupportActionBar(miActionBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         rvPets = (RecyclerView) findViewById(R.id.rvPets);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvPets.setLayoutManager(linearLayoutManager);
 
-        imgBtnFavorites.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, FavoritePets.class);
-                startActivity(intent);
-            }
-        });
-
         inicializarListaContactos();
         inicializarAdaptador();
 
     }
-    public void inicializarAdaptador(){
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_opciones, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.mAbout:
+                Intent iAbout = new Intent(this, ActivityAbout.class);
+                startActivity(iAbout);
+                break;
+            case R.id.mContact:
+                Intent iSettings = new Intent(this, ActivityContact.class);
+                startActivity(iSettings);
+                break;
+            case R.id.mFavorites:
+                Intent iFavorites = new Intent(this, FavoritePets.class);
+                startActivity(iFavorites);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void inicializarAdaptador() {
         petAdapter = new PetAdapter(pets, this);
         rvPets.setAdapter(petAdapter);
     }
 
-    public void inicializarListaContactos(){
+    public void inicializarListaContactos() {
         pets = new ArrayList<>();
 
         pets.add(new Pet("Catty", 6, R.drawable.beaver_icon));

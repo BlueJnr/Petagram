@@ -6,7 +6,7 @@
     tools:context=".MainActivity">
 
     <include android:id="@+id/miActionBarFavorite"
-        layout="@layout/actionbar_favorite_pets">
+        layout="@layout/actionbar">
 
     </include>
 

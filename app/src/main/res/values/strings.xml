@@ -6,4 +6,17 @@
     <string name="pnombre">nombre</string>
     <string name="ptelefono">telefono</string>
     <string name="pemail">email</string>
+
+    <string name="menu_about">Acerca de</string>
+    <string name="menu_contact">Contacto</string>
+    <string name="menu_favorites">Favoritos</string>
+
+    <string name="button_sendComment">Enviar Comentario</string>
+
+    <string name="nameTextInput">Nombre completo</string>
+    <string name="emailTextInput">Email</string>
+    <string name="messageTextInput">Mensaje</string>
+
+    <string name="about_me">¡Hola, soy Jhunior Cuadros!\n\nEste es mi trabajo Petagram donde he aplicado todo lo aprendido. ¡Espero sus comentarios!\n\n¡Hasta la próxima!</string>
+
 </resources>
