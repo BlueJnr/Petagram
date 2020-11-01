@@ -19,4 +19,7 @@
 
     <string name="about_me">¡Hola, soy Jhunior Cuadros!\n\nEste es mi trabajo Petagram donde he aplicado todo lo aprendido. ¡Espero sus comentarios!\n\n¡Hasta la próxima!</string>
 
+    <string name="mensaje">Camera :)</string>
+    <string name="texto_accion">Acción</string>
+
 </resources>
