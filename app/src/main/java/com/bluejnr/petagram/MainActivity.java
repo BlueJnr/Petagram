@@ -1,6 +1,7 @@
 package com.bluejnr.petagram;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -9,40 +10,49 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bluejnr.petagram.util.JavaMailAPI;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<Pet> pets;
-    private RecyclerView rvPets;
-    public PetAdapter petAdapter;
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+
+    @Nullable
+    @Override
+    public Uri getReferrer() {
+        return super.getReferrer();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar miActionBar = (Toolbar) findViewById(R.id.miActionBar);
-        setSupportActionBar(miActionBar);
+        toolbar = (Toolbar) findViewById(R.id.miActionBar);
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        setUpViewPager();
+
+        if (toolbar != null ){
+            setSupportActionBar(toolbar);
+        }
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        rvPets = (RecyclerView) findViewById(R.id.rvPets);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        rvPets.setLayoutManager(linearLayoutManager);
-
-        inicializarListaContactos();
-        inicializarAdaptador();
 
         agregarFAB();
 
@@ -75,20 +85,22 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void inicializarAdaptador() {
-        petAdapter = new PetAdapter(pets, this);
-        rvPets.setAdapter(petAdapter);
+    private void setUpViewPager() {
+        viewPager.setAdapter(new PageAdapter(getSupportFragmentManager(), agregarFragments()));
+        tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_profile);
     }
 
-    public void inicializarListaContactos() {
-        pets = new ArrayList<>();
+    private ArrayList<Fragment> agregarFragments(){
+        ArrayList<Fragment> fragments = new ArrayList<>();
 
-        pets.add(new Pet("Catty", 6, R.drawable.beaver_icon));
-        pets.add(new Pet("Ronny", 5, R.drawable.dog_puppy_icon));
-        pets.add(new Pet("Boby", 8, R.drawable.dog_mask_icon));
-        pets.add(new Pet("Marta", 5, R.drawable.koala_icon));
-        pets.add(new Pet("Lazy", 8, R.drawable.puppy_icon));
-        pets.add(new Pet("Budy", 5, R.drawable.dog_puppy_icon));
+        fragments.add(new RecyclerViewFragment());
+        fragments.add(new ProfileFragment());
+
+        return fragments;
+
     }
 
     public void agregarFAB() {
