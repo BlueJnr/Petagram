@@ -5,11 +5,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
+
+import com.bluejnr.petagram.adapter.PetAdapter;
+import com.bluejnr.petagram.pojo.Pet;
 
 import java.util.ArrayList;
 

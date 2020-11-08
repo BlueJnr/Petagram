@@ -1,4 +1,4 @@
-package com.bluejnr.petagram;
+package com.bluejnr.petagram.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bluejnr.petagram.pojo.Pet;
+import com.bluejnr.petagram.R;
+import com.bluejnr.petagram.adapter.PetProfileAdapter;
 
 import java.util.ArrayList;
 

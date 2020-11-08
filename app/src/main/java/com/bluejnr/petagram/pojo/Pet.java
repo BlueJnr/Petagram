@@ -1,4 +1,4 @@
-package com.bluejnr.petagram;
+package com.bluejnr.petagram.pojo;
 
 public class Pet {
 

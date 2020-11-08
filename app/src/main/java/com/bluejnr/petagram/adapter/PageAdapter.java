@@ -1,4 +1,4 @@
-package com.bluejnr.petagram;
+package com.bluejnr.petagram.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
